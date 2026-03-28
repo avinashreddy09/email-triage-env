@@ -1,4 +1,4 @@
-﻿"""
+"""
 FastAPI server for OpenEnv Email Triage Environment
 """
 
@@ -29,11 +29,43 @@ class StepRequest(BaseModel):
 
 @app.get("/")
 async def root():
+    """OpenEnv-compliant root endpoint"""
     return {
-        "name": "Email Triage OpenEnv",
-        "version": "1.0.0",
-        "description": "Real-world email management simulation for AI agents",
-        "endpoints": ["POST /reset", "POST /step", "GET /state", "GET /grader", "GET /tasks"]
+        "openenv": {
+            "name": "Email Triage Environment",
+            "description": "Real-world email management simulation for AI agents",
+            "version": "1.0.0",
+            "endpoints": {
+                "reset": "/reset",
+                "step": "/step",
+                "state": "/state",
+                "grader": "/grader",
+                "tasks": "/tasks"
+            },
+            "tasks": [
+                {
+                    "id": 1,
+                    "name": "Easy - Simple Email Filtering",
+                    "description": "Archive spam and reply to customer inquiry",
+                    "difficulty": "easy",
+                    "max_actions": 10
+                },
+                {
+                    "id": 2,
+                    "name": "Medium - Priority Management",
+                    "description": "Handle urgent emails and manage priorities",
+                    "difficulty": "medium",
+                    "max_actions": 20
+                },
+                {
+                    "id": 3,
+                    "name": "Hard - Complex Workflow",
+                    "description": "Handle complaints, escalations, and multiple priorities",
+                    "difficulty": "hard",
+                    "max_actions": 25
+                }
+            ]
+        }
     }
 
 @app.post("/reset")
