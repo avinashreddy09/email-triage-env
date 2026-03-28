@@ -1,0 +1,50 @@
+﻿name: Email Triage Environment
+description: Real-world email management simulation for AI agents
+version: 1.0.0
+
+environment:
+  class: environment.EmailTriageEnv
+  entry_point: environment
+
+action_space:
+  type: object
+  description: "Action to perform on an email"
+  fields:
+    action_type: "reply, archive, delete, mark_spam, mark_read, prioritize"
+    email_id: "ID of the email to act on"
+    reply_content: "Content for reply action (optional)"
+    new_priority: "New priority for prioritize action (optional)"
+
+observation_space:
+  type: object
+  description: "Current state of the environment"
+  fields:
+    visible_emails: "List of non-archived emails"
+    task_description: "Description of current task"
+    actions_taken: "Number of actions taken so far"
+    max_actions: "Maximum allowed actions"
+    current_score: "Current accumulated reward"
+    task_id: "Current task ID (1-3)"
+
+tasks:
+  - id: 1
+    name: Easy - Simple Email Filtering
+    description: Archive spam and reply to customer inquiry
+    difficulty: easy
+    max_actions: 10
+    
+  - id: 2
+    name: Medium - Priority Management
+    description: Handle urgent emails and manage priorities
+    difficulty: medium
+    max_actions: 20
+    
+  - id: 3
+    name: Hard - Complex Workflow
+    description: Handle complaints, escalations, and multiple priorities
+    difficulty: hard
+    max_actions: 25
+
+metadata:
+  tags: ["email", "triage", "productivity", "real-world"]
+  categories: ["communication", "management"]
