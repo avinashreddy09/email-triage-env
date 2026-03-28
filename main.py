@@ -1,4 +1,4 @@
-"""
+﻿"""
 FastAPI server for OpenEnv Email Triage Environment
 """
 
@@ -8,12 +8,10 @@ from pydantic import BaseModel
 from typing import Dict, Any, Optional, List
 import os
 
-# Import environment
 from environment import EmailTriageEnv, Action
 
-app = FastAPI(title="Email Triage OpenEnv", description="Real-world email management environment")
+app = FastAPI(title="Email Triage OpenEnv")
 
-# CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -29,7 +27,6 @@ class StepRequest(BaseModel):
 
 @app.get("/")
 async def root():
-    """OpenEnv-compliant root endpoint"""
     return {
         "openenv": {
             "name": "Email Triage Environment",
@@ -41,39 +38,14 @@ async def root():
                 "state": "/state",
                 "grader": "/grader",
                 "tasks": "/tasks"
-            },
-            "tasks": [
-                {
-                    "id": 1,
-                    "name": "Easy - Simple Email Filtering",
-                    "description": "Archive spam and reply to customer inquiry",
-                    "difficulty": "easy",
-                    "max_actions": 10
-                },
-                {
-                    "id": 2,
-                    "name": "Medium - Priority Management",
-                    "description": "Handle urgent emails and manage priorities",
-                    "difficulty": "medium",
-                    "max_actions": 20
-                },
-                {
-                    "id": 3,
-                    "name": "Hard - Complex Workflow",
-                    "description": "Handle complaints, escalations, and multiple priorities",
-                    "difficulty": "hard",
-                    "max_actions": 25
-                }
-            ]
+            }
         }
     }
 
 @app.post("/reset")
 async def reset(task_id: int = 1):
-    """Reset environment - MUST return observation field for OpenEnv validation"""
     try:
         observation = env.reset(task_id=task_id)
-        # CRITICAL: Wrap response with "observation" field for OpenEnv compliance
         return {
             "observation": {
                 "visible_emails": observation.visible_emails,
@@ -90,7 +62,6 @@ async def reset(task_id: int = 1):
 
 @app.post("/step")
 async def step(request: StepRequest):
-    """Take an action"""
     try:
         action = Action(
             action_type=request.action["action_type"],
@@ -119,39 +90,18 @@ async def step(request: StepRequest):
 
 @app.get("/state")
 async def get_state():
-    """Get current state"""
     return env.state()
 
 @app.get("/grader")
 async def get_grade():
-    """Get final grade for current episode"""
     return {"grade": env.grade(), "task_id": env.task_id}
 
 @app.get("/tasks")
 async def list_tasks():
-    """List all available tasks"""
     return {
         "tasks": [
-            {
-                "id": 1,
-                "name": "Easy - Simple Email Filtering",
-                "description": "Archive spam and reply to customer inquiry",
-                "difficulty": "easy",
-                "max_actions": 10
-            },
-            {
-                "id": 2,
-                "name": "Medium - Priority Management", 
-                "description": "Handle urgent emails and manage priorities",
-                "difficulty": "medium",
-                "max_actions": 20
-            },
-            {
-                "id": 3,
-                "name": "Hard - Complex Workflow",
-                "description": "Handle complaints, escalations, and multiple priorities",
-                "difficulty": "hard",
-                "max_actions": 25
-            }
+            {"id": 1, "name": "Easy - Simple Email Filtering", "difficulty": "easy", "max_actions": 10},
+            {"id": 2, "name": "Medium - Priority Management", "difficulty": "medium", "max_actions": 20},
+            {"id": 3, "name": "Hard - Complex Workflow", "difficulty": "hard", "max_actions": 25}
         ]
     }
