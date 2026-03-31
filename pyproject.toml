@@ -1,17 +1,10 @@
-﻿[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[project]
+﻿[project]
 name = "email-triage-env"
 version = "1.0.0"
 description = "Real-world email management simulation for AI agents"
-authors = [
-    {name = "Avinash Reddy", email = "avinashreddydonthireddy2006@gmail.com"}
-]
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = { text = "MIT" }
 dependencies = [
     "fastapi>=0.100.0",
     "uvicorn>=0.23.0",
@@ -21,13 +14,14 @@ dependencies = [
     "requests>=2.31.0"
 ]
 
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project.urls]
 Homepage = "https://github.com/avinashreddy09/email-triage-agent"
-"Hugging Face" = "https://huggingface.co/spaces/avinashreddy09/email-triage-agent"
+"HF Space" = "https://huggingface.co/spaces/avinashreddy09/email-triage-agent"
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["environment*"]
-
-[tool.setuptools.package-data]
-environment = ["*.yaml"]
