@@ -1,27 +1,9 @@
-﻿[project]
-name = "email-triage-env"
+[project]
+name = "email-triage-agent"
 version = "1.0.0"
-description = "Real-world email management simulation for AI agents"
-readme = "README.md"
+description = "Email Triage Environment for AI agents"
 requires-python = ">=3.10"
-license = { text = "MIT" }
-dependencies = [
-    "fastapi>=0.100.0",
-    "uvicorn>=0.23.0",
-    "pydantic>=2.0.0",
-    "openai>=1.0.0",
-    "python-dotenv>=1.0.0",
-    "requests>=2.31.0"
-]
 
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
-
-[project.urls]
-Homepage = "https://github.com/avinashreddy09/email-triage-agent"
-"HF Space" = "https://huggingface.co/spaces/avinashreddy09/email-triage-agent"
-
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["environment*"]
