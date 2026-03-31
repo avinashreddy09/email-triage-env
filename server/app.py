@@ -1,11 +1,16 @@
-﻿"""Main entry point for OpenEnv environment"""
+﻿"""Entry point for OpenEnv environment"""
 
-from environment import EmailTriageEnv
-import uvicorn
+import sys
+import os
+
+# Add parent directory to path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from main import app
 
 def main():
     """Run the FastAPI server"""
-    from main import app
+    import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=7860)
 
 if __name__ == "__main__":
