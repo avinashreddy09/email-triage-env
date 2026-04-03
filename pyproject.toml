@@ -1,24 +1,12 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "email-triage-agent"
 version = "1.0.0"
-description = "Email Triage Environment for AI agents"
-requires-python = ">=3.10"
-dependencies = [
-    "openenv-core[core]>=0.2.0",
-    "fastapi>=0.115.0",
-    "pydantic>=2.0.0",
-    "uvicorn>=0.24.0",
-    "requests>=2.31.0",
-    "openai>=1.0.0",
-]
+description = "Email Triage Environment"
+dependencies = ["openenv-core>=0.2.0"]
 
 [project.scripts]
 email-triage-agent = "server.app:main"
-
-[tool.setuptools]
-packages = ["server"]
-package-dir = {"" = "."}
