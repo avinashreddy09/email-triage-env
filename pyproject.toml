@@ -24,4 +24,3 @@ email-triage-agent = "server.app:main"
 
 [project.urls]
 Homepage = "https://github.com/avinashreddy09/email-triage-agent"
-"HF Space" = "https://huggingface.co/spaces/avinashreddy09/email-triage-agent"
