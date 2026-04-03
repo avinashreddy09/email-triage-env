@@ -1,26 +1,18 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "email-triage-agent"
 version = "1.0.0"
 description = "Email Triage Environment for AI agents"
-readme = "README.md"
-requires-python = ">=3.10"
-license = {text = "MIT"}
 dependencies = [
-    "fastapi>=0.100.0",
-    "uvicorn>=0.23.0",
-    "pydantic>=2.0.0",
-    "openai>=1.0.0",
-    "python-dotenv>=1.0.0",
-    "requests>=2.31.0",
-    "openenv-core>=0.2.0"
+    "fastapi",
+    "uvicorn", 
+    "openai",
+    "requests",
+    "openenv-core"
 ]
 
 [project.scripts]
 email-triage-agent = "server.app:main"
-
-[project.urls]
-Homepage = "https://github.com/avinashreddy09/email-triage-agent"
