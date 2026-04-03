@@ -4,8 +4,3 @@ type: space
 runtime: fastapi
 app: server.app:app
 port: 7860
-
-[env]
-HF_TOKEN = ""
-API_BASE_URL = "https://router.huggingface.co/v1"
-MODEL_NAME = "gpt-3.5-turbo"
