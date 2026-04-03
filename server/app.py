@@ -2,8 +2,7 @@ import sys
 import os
 
 # Add parent directory to path
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, parent_dir)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from main import app
 
@@ -11,5 +10,5 @@ def main():
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=7860)
 
-if __name__ == "__main__":
-    main()
+# For the app to be importable as 'app'
+# This is what openenv.yaml references with 'app: server.app:app'

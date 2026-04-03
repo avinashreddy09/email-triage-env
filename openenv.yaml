@@ -1,38 +1,11 @@
-name: Email Triage Environment
-description: Real-world email management simulation for AI agents
-version: 1.0.0
+spec_version: 1
+name: email-triage-agent
+type: space
+runtime: fastapi
+app: server.app:app
+port: 7860
 
-environment:
-  class: environment.EmailTriageEnv
-  entry_point: environment
-
-action_space:
-  type: object
-  description: "Action to perform on an email"
-
-observation_space:
-  type: object
-  description: "Current state of the environment"
-
-tasks:
-  - id: 1
-    name: Easy - Simple Email Filtering
-    description: Archive spam and reply to customer inquiry
-    difficulty: easy
-    max_actions: 10
-    
-  - id: 2
-    name: Medium - Priority Management
-    description: Handle urgent emails and manage priorities
-    difficulty: medium
-    max_actions: 20
-    
-  - id: 3
-    name: Hard - Complex Workflow
-    description: Handle complaints, escalations, and multiple priorities
-    difficulty: hard
-    max_actions: 25
-
-metadata:
-  tags: ["email", "triage", "real-world"]
-  categories: ["communication", "management"]
+[env]
+HF_TOKEN = ""
+API_BASE_URL = "https://router.huggingface.co/v1"
+MODEL_NAME = "gpt-3.5-turbo"
