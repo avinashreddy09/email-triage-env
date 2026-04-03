@@ -10,5 +10,6 @@ def main():
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=7860)
 
-# For the app to be importable as 'app'
-# This is what openenv.yaml references with 'app: server.app:app'
+# This is required for the entry point to work
+if __name__ == "__main__":
+    main()
